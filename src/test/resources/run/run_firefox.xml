@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Firefox_Tests">
+    <test name="Test 2">
+        <parameter name="browser" value="firefox-docker"/>
+        <classes>
+            <class name="test.GoogleSearchTests"/>
+        </classes>
+    </test>
+</suite>

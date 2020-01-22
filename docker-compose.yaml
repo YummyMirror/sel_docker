@@ -1,0 +1,34 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub:3.14
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:3.14
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  firefox:
+    image: selenium/node-firefox:3.14
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  suite1:
+    image: yummymirror1/selenium_docker:chrome-firefox
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - HUB_HOST=hub
+      - SUITE_FILE=run_chrome.xml
+  suite2:
+    image: yummymirror1/selenium_docker:chrome-firefox
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - HUB_HOST=hub
+      - SUITE_FILE=run_firefox.xml
